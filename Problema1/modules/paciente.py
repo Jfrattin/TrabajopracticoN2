@@ -1,5 +1,6 @@
 class Paciente:
-    def __init__(self, tiempo, nivel_riesgo):
+    def __init__(self, tiempo, nivel_riesgo , nombre):
+        self.nombre = nombre
         self.tiempo = tiempo
         self.nivel_riesgo = nivel_riesgo
 
@@ -17,12 +18,12 @@ class Paciente:
         elif self.nivel_riesgo == otro_paciente.nivel_riesgo:
             print(self.tiempo )
             print(otro_paciente.tiempoself.tiempo )
-            return self.tiempo > otro_paciente.tiempo
+            return self.tiempo < otro_paciente.tiempo
         else:
             return False
 
     def __str__(self):
-        return f"Entrada: {self.tiempo},  Nivel de Riesgo: {self.nivel_riesgo}"
+        return f"Entrada: {self.tiempo}, Nombre: {self.nombre}  Nivel de Riesgo: {self.nivel_riesgo}"
 
     def __gt__(self, otro_paciente):
         return self.nivel_riesgo > otro_paciente.nivel_riesgo

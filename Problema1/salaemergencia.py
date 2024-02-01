@@ -6,6 +6,7 @@ Sala de emergencias
 import time
 import datetime
 from modules.paciente import Paciente as pac
+from faker import Faker
 from modules.monticulo import MonticuloBinario 
 import random
 
@@ -19,14 +20,18 @@ for i in range(n):
     ahora = datetime.datetime.now()
     fecha_y_hora = ahora.strftime('%d/%m/%Y %H:%M:%S')
     
-    
+    # Crea una instancia de Faker
+    fake = Faker()
+
+    # Genera un nombre aleatorio
+    nombre_aleatorio = fake.name()          
     
     # Se crea un paciente un paciente por segundo
     # La criticidad del paciente es aleatoria
-    criticidad_aleatoria = random.randint(1, 5)
-    paciente = pac(ahora,criticidad_aleatoria)
+    criticidad_aleatoria = random.randint(1, 3)
+    paciente = pac(ahora,criticidad_aleatoria,nombre_aleatorio)
     print('-*-'*15)
-    print("Ingreso un paciente",'', ahora.strftime('%d/%m/%Y %H:%M:%S'), '' , "con Riesgo:" ,criticidad_aleatoria )
+    print("Ingreso el paciente", paciente.nombre ,'', ahora.strftime('%d/%m/%Y %H:%M:%S'), '' , "con Riesgo:" ,criticidad_aleatoria )
     
     cola_de_espera.insertar(paciente)
 
