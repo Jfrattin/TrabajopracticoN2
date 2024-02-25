@@ -59,24 +59,23 @@ class Grafo:
         
         return float("-inf")
     
-    def minimo_precio_envio(self, start_city, end_city):
+    def minimo_precio_envio(self, ciudad_inicio, ciudad_destino):
         cola = Monticulo()
         costos = {city: float("inf") for city in self.listaVertices}#Asigna a cada ciudad un costo inicial infinito
-        costos[start_city] = 0 #Ciudad de inicio tiene un costo de cero
-        cola.insertar(start_city, 0)
+        costos[ciudad_inicio] = 0 #Ciudad de inicio tiene un costo de cero
+        cola.insertar(ciudad_inicio, 0)
 
         
         while not cola.esta_vacia():#Mientras la cola no esté vacía
-            current_city = cola.obtener()#Obtiene la ciudad con el menor costo
-            if current_city == end_city:#Si es la ciudad final, devuelve el costo
-                return costos[current_city]
+            ciudad_actual = cola.obtener()#Obtiene la ciudad con el menor costo
+            if ciudad_actual == ciudad_destino:#Si es la ciudad final, devuelve el costo
+                return costos[ciudad_actual]
 
-            current_vertex = self.listaVertices[current_city]
-
-            for neighbor in current_vertex.obtenerConexiones():#Para cada vecino de la ciudad actual
-                neighbor_city = neighbor.id
-                cost = current_vertex.obtenerPrecio(neighbor)  #devuelve el precio de la arista
-                possible_cost = costos[current_city] + cost
-                if possible_cost < costos[neighbor_city]:#Si el posible costo es menor que el costo actual al vecino 
-                    costos[neighbor_city] = possible_cost#Actualiza el costo del vecino
-                    cola.insertar(neighbor_city, -possible_cost)#Lo inserta en la cola de prioridad
+            vertice_actual = self.listaVertices[ciudad_actual]
+            for vecino in vertice_actual.obtenerConexiones():#Para cada vecino de la ciudad actual
+                ciudad_vecino = vecino.id
+                cost = vertice_actual.obtenerPrecio(vecino)  #devuelve el precio de la arista
+                costo_posible = costos[ciudad_actual] + cost
+                if costo_posible < costos[ciudad_vecino]:#Si el posible costo es menor que el costo actual al vecino 
+                    costos[ciudad_vecino] = costo_posible#Actualiza el costo del vecino
+                    cola.insertar(ciudad_vecino, -costo_posible)#Lo inserta en la cola de prioridad
