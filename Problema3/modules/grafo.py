@@ -74,8 +74,8 @@ class Grafo:
             vertice_actual = self.listaVertices[ciudad_actual]
             for vecino in vertice_actual.obtenerConexiones():#Para cada vecino de la ciudad actual
                 ciudad_vecino = vecino.id
-                cost = vertice_actual.obtenerPrecio(vecino)  #devuelve el precio de la arista
-                costo_posible = costos[ciudad_actual] + cost
+                costo = vertice_actual.obtenerPrecio(vecino)  #devuelve el precio de la arista
+                costo_posible = costos[ciudad_actual] + costo
                 if costo_posible < costos[ciudad_vecino]:#Si el posible costo es menor que el costo actual al vecino 
                     costos[ciudad_vecino] = costo_posible#Actualiza el costo del vecino
                     cola.insertar(ciudad_vecino, -costo_posible)#Lo inserta en la cola de prioridad
