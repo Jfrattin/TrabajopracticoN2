@@ -5,14 +5,14 @@ class Vertice:
         self.conectadoA = {}
         self.peso = 0
         self.predecesor = None
-        self.precio=float('inf')
+        self.precio=float('inf')    
     def agregarVecino(self, vecino, ponderacion=0,precio=0):#Este método agrega un vértice vecino al vértice actual con una ponderación la ponderacion en este caso seria el peso maximo  y un precio dados
         self.conectadoA[vecino] = (ponderacion,precio)#Guardamos el precio junto con la ponderación
     #Este metodo asigna una peso entre los nodos
     def asignarPeso(self, peso):
         self.peso = peso
     #Este metodo obtiene una peso entre los nodos
-    def obtenerpeso(self):
+    def obtenerPeso(self):
         return self.peso
     #Este metodo obtiene una peso entre los nodos
     def asignarPredecesor(self, predecesor):
